@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OxAI</title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #ffffff;
+            color: #121212;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .option-btn {
+            padding: 24px 32px 24px 79px;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            background: transparent;
+            font-size: 18px;
+            font-weight: 500;
+            color: #121212;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:hover {
+            border-color: #121212;
+            transform: translateY(-2px);
+        }
+
+        .option-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121212;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .option-btn:hover::after {
+            opacity: 0.03;
+        }
+
+        .continue {
+            flex: 0 0 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .arrow-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #121212;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: none;
+        }
+
+        .arrow-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .arrow-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .hint {
+            font-size: 14px;
+            color: #888;
+            text-align: center;
+        }
+        .desc {
+            font-size: 14px;
+            color: #888;
+        }
+        .logOx {
+            position: absolute;
+            left: 1em;
+            top: 50%;
+            translate: 0% -50%;
+        }
+        h1{
+            position: fixed;
+            top: 3em;
+            left:50%;
+            transform: translateX(-50%);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Выберите нейросеть:</h1>
+    <div class="container">
+        <div class="options">
+            <button class="option-btn" id="liteOption">
+                <img src="frame24.png" width="50px" class="logOx">
+                OxAI Lite
+                <p class="desc">Бесплатная версия OxAI, немного туповата ⭐</p>
+            </button>
+            <button class="option-btn" id="maxOption">
+                <img src="frame23.png" width="50px" class="logOx">
+                OxAI Max
+                <p class="desc">Самая умная выявленная версия OxAI. Идеально подходит для трудоёмких задач с искусственным интелектом 🔮</p>
+            </button>
+        </div>
+        
+        <div class="continue">
+            <button class="arrow-btn" id="continueBtn" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+            <div class="hint">Выберите вариант</div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+        
+        const liteOption = document.getElementById('liteOption');
+        const maxOption = document.getElementById('maxOption');
+        const continueBtn = document.getElementById('continueBtn');
+        
+        function selectOption(option) {
+            // Reset all options
+            liteOption.style.borderColor = '#e0e0e0';
+            liteOption.style.backgroundColor = 'transparent';
+            maxOption.style.borderColor = '#e0e0e0';
+            maxOption.style.backgroundColor = 'transparent';
+            
+            // Highlight selected option
+            option.style.borderColor = '#121212';
+            option.style.backgroundColor = 'rgba(0, 0, 0, 0.03)';
+            
+            selectedOption = option.id;
+            continueBtn.disabled = false;
+            document.querySelector('.hint').textContent = 'Готово к продолжению';
+        }
+        
+        liteOption.addEventListener('click', () => selectOption(liteOption));
+        maxOption.addEventListener('click', () => selectOption(maxOption));
+        
+        continueBtn.addEventListener('click', () => {
+            if (selectedOption) {
+                //alert(`Выбран вариант: ${selectedOption === 'liteOption' ? 'OxAI Lite' : 'OxAI Max'}`);
+                // Здесь будет переход к чату с ИИ
+                if (selectedOption === 'liteOption') {
+                    location.href = "botlite.html";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
