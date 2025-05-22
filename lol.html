@@ -108,7 +108,9 @@
         }
 
         .input-area {
-            position: relative;
+            position: fixed;
+            left:0;
+            right: 0;
             bottom: 5px;
             padding: 12px 16px;
             border-top: 1px solid #e0e0e0;
@@ -259,12 +261,20 @@
             .header {
                 padding: 10px 12px;
             }
+            
+        }
+        .chat-container{
+           position: relative;
+           left: 0;
+           right:0;
+           bottom: 7em;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
+    
+<div class="header">
         <div class="logo" id="currentChatName">Новый чат</div>
         <div class="chat-actions">
             <button class="chat-btn" id="newChatBtn">Новый</button>
